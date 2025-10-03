@@ -1,0 +1,50 @@
+---
+- hosts: webservers
+  become: true
+
+  tasks:
+    - name: Make sure the package openssh and openssl are up to date 
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - openssh
+        - openssl
+      ignore_errors: yes
+
+    - name: Install required system packages
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Check if a file exists in temp and fail task if it does
+      ansible.builtin.command: ls /tmp/this_should_not_be_here
+      register: result
+      failed_when:
+       - result.rc == 0
+       - '"No such" not in result.stderr'
+
+    - name: Add Docker GPG apt Key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      ansible.builtin.apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: verify if docker is installed
+      ansible.builtin.command: docker --version
+      register: output
+      ignore_errors: yes
