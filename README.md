@@ -954,7 +954,7 @@ This project successfully demonstrates:
 ### 🤝 **Contributing**
 
 This project serves as a foundation for:
-- **Learning Ansible automation**
+- **Ansible automation**
 - **Understanding AWS integration**
 - **Implementing DevOps practices**
 - **Building production-ready infrastructure**
