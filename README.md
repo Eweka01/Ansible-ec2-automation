@@ -113,7 +113,6 @@ Ansible-ec2-automation/
 │   ├── 📄 main.yaml                   # Comprehensive error handling
 │   └── 📄 inventory.ini               # Test environment inventory
 ├── 📁 venv/                           # Python virtual environment
-├── 📄 ANSIBLE_EC2_AUTOMATION_GUIDE.md # This comprehensive guide
 └── 📄 README.md                       # Project overview
 ```
 
