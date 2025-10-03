@@ -1,4 +1,4 @@
-# Complete Guide to Ansible EC2 Automation: Production-Ready Infrastructure Management
+# Ansible EC2 Automation: Production-Ready Infrastructure Management
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
